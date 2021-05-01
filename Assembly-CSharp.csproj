@@ -37,15 +37,13 @@
   </PropertyGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Movement\GroundChecker.cs" />
-     <Compile Include="Assets\Scripts\Movement\InputHandler.cs" />
-     <Compile Include="Assets\Scripts\Movement\InputData.cs" />
-     <Compile Include="Assets\Scripts\Movement\MoveCommand\MoveCommand.cs" />
+     <Compile Include="Assets\Scripts\Movement\JumpModule\JumpModule.cs" />
+     <Compile Include="Assets\Scripts\Movement\MoveModule\MoveModule.cs" />
+     <Compile Include="Assets\Scripts\Movement\InputHandleModule\InputHandleModule.cs" />
      <Compile Include="Assets\Scripts\EntityInfo.cs" />
      <Compile Include="Assets\Scripts\EntityManager.cs" />
-     <Compile Include="Assets\Scripts\Movement\ICommandContext.cs" />
-     <Compile Include="Assets\Scripts\ICommand.cs" />
-     <Compile Include="Assets\Scripts\UntitledInstaller.cs" />
-     <Compile Include="Assets\Scripts\Movement\MoveCommand\MoveCommandContext.cs" />
+     <Compile Include="Assets\Scripts\Viewing\ViewModule\ViewModule.cs" />
+     <Compile Include="Assets\Scripts\Effects\SwingEffect\SwingEffectModule.cs" />
      <None Include="Assets\Textures\Sky\Hdri setup.txt" />
     <Reference Include="UnityEngine">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
@@ -268,21 +266,6 @@
     </Reference>
     <Reference Include="UnityEditor.UnityConnectModule">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Managed/UnityEngine/UnityEditor.UnityConnectModule.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
-        <HintPath>D:/AnotherShooterBitesTheDust/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
-        <HintPath>D:/AnotherShooterBitesTheDust/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject-usage">
-        <HintPath>D:/AnotherShooterBitesTheDust/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
-        <HintPath>D:/AnotherShooterBitesTheDust/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
-        <HintPath>D:/AnotherShooterBitesTheDust/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -630,86 +613,70 @@
         <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/Facades/System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Searcher.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Searcher.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Core.Editor">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
-        <HintPath>D:/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+        <HintPath>D:/AnotherShooterBitesTheDust/AnotherShooterBitesTheDust/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{f21f78b4-907a-ef8b-b624-b127592e2228}</Project>
-      <Name>Zenject-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{52134032-47c6-acaa-bff2-367080f6503e}</Project>
-      <Name>Zenject-PoolMonitor-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
-      <Project>{911dd450-09d4-8c98-4dab-4c3609cb4158}</Project>
-      <Name>Zenject-ReflectionBaking-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject.csproj">
-      <Project>{9e926b25-a835-a8db-ad21-218065e9a62f}</Project>
-      <Name>Zenject</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
