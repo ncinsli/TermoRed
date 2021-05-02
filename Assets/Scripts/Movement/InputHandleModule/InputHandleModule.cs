@@ -5,7 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(MoveModule))]
 [RequireComponent(typeof(JumpModule))]
 public class InputHandleModule : MonoBehaviour{
-    [SerializeField] private List<KeyCode> keyCodes = new List<KeyCode>();
     [SerializeField] private KeyCode jumpKey = KeyCode.Space;
     [HideInInspector] public bool moving = false;
     private EntityManager entity;
@@ -17,14 +16,12 @@ public class InputHandleModule : MonoBehaviour{
         entity = GetComponent<EntityManager>();
         jumpModule = GetComponent<JumpModule>();
     }
-    private void Update(){
-        moving = true;
-        if (Input.GetKey(keyCodes[0])) moveModule.Move(entity.left);
-        if (Input.GetKey(keyCodes[1])) moveModule.Move(entity.right);
-        if (Input.GetKey(keyCodes[2])) moveModule.Move(entity.forward);
-        if (Input.GetKey(keyCodes[3])) moveModule.Move(entity.back);
-        else moving = false;
+    private void FixedUpdate(){
+        Vector3 axis = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
+        moveModule.Move(axis.z * entity.forward + axis.x * entity.right);
 
-        if (Input.GetKeyDown(jumpKey)) jumpModule.Jump();
+    }
+    private void Update(){
+        if (Input.GetKeyDown(KeyCode.Space)) jumpModule.Jump();
     }
 }

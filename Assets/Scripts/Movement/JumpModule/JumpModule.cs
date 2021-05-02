@@ -8,7 +8,9 @@ public class JumpModule : MonoBehaviour{
     private Rigidbody rigidbody;
     private void Awake() => rigidbody = GetComponent<Rigidbody>();
     public void Jump(){
-        if (groundChecker.touchingGround)
-            rigidbody.velocity += Vector3.up * jumpForce;
+        if (groundChecker.touchingGround){
+            rigidbody.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            Debug.Log("Cringe");
+        }
     }
 }
