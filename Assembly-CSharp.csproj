@@ -52,17 +52,21 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\EntityManager.cs" />
-     <Compile Include="Assets\Scripts\PlayerModuleConnector.cs" />
-     <Compile Include="Assets\Scripts\IModuleLoader.cs" />
-     <Compile Include="Assets\Scripts\Modules\MoveBehaviour.cs" />
-     <Compile Include="Assets\Scripts\Modules\InputBehaviour.cs" />
      <Compile Include="Assets\Scripts\Contexts\InputModuleContext.cs" />
-     <Compile Include="Assets\Scripts\Contexts\MoveBehaviourContext.cs" />
-     <Compile Include="Assets\Scripts\IBehaviourContext.cs" />
-     <Compile Include="Assets\Scripts\ModuleSettings\Protos\MoveBehaviourSettings.cs" />
+     <Compile Include="Assets\Scripts\Realisations\PlayerModuleConnector.cs" />
      <Compile Include="Assets\Scripts\ModuleSettings\Protos\InputBehaviourSettings.cs" />
+     <Compile Include="Assets\Scripts\Modules\MoveBehaviour.cs" />
      <Compile Include="Assets\Scripts\GroundChecker.cs" />
+     <Compile Include="Assets\Scripts\IModuleLoader.cs" />
+     <Compile Include="Assets\Scripts\IBehaviourContext.cs" />
+     <Compile Include="Assets\Scripts\Modules\InputBehaviour.cs" />
+     <Compile Include="Assets\Scripts\Contexts\MoveBehaviourContext.cs" />
+     <Compile Include="Assets\Scripts\ModuleSettings\Protos\MoveBehaviourSettings.cs" />
+     <Compile Include="Assets\Scripts\DirectionCounter.cs" />
+     <Compile Include="Assets\Scripts\Contexts\ViewBehaviourContext.cs" />
+     <Compile Include="Assets\Scripts\Modules\ViewBehaviour.cs" />
+     <Compile Include="Assets\Scripts\ModuleSettings\Protos\ViewBehaviourSettings.cs" />
+     <Compile Include="Assets\Scripts\Realisations\PlayerHeadModuleConntector.cs" />
      <None Include="Assets\Textures\Sky\Hdri setup.txt" />
  <Reference Include="UnityEngine">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2020.3.2f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

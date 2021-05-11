@@ -15,13 +15,14 @@ namespace Contexts
         public float jumpPower;
         public bool isJumping;
         public bool onGround;
+        public DirectionCounter directionCounter;
+
         public MoveBehaviourContext(GameObject t, MoveBehaviourSettings settings)
         {
             gameObject = t;
             body = gameObject.GetComponent<Rigidbody>();
             maxSpeed = settings.maxSpeed;
             jumpPower = settings.jumpPower;
-            
         }
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Contexts
 {
+    [System.Serializable]
     public class InputBehaviourContext : IBehaviourContext
     {
         public readonly GameObject gameObject;
