@@ -8,6 +8,9 @@ public class DirectionCounter : MonoBehaviour{
         res.y = 0f;
         return res;
     }}
+
+    public Vector3 rawForward => (cross.position - transform.position).normalized;    
+
     public Vector3 back => -forward;
     public Vector3 left { get {
         var res = forward;

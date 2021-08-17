@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Realisations\WeaponRealisation.cs" />
      <Compile Include="Assets\Scripts\Contexts\InputBehaviourContext.cs" />
      <Compile Include="Assets\Scripts\ModuleSettings\Protos\ShootBehaviourSettings.cs" />
+     <Compile Include="Assets\Scripts\ModuleSettings\Protos\BulletBehaviourSettings.cs" />
      <None Include="Assets\Textures\Sky\Hdri setup.txt" />
      <Reference Include="UnityEngine">
      <HintPath>C:/Program Files/Unity/Hub/Editor/2021.1.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

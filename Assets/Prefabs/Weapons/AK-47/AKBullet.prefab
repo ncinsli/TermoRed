@@ -99,6 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletBehaviourContext:
     directionCounter: {fileID: 0}
+  _bulletBehaviourSettings: {fileID: 11400000, guid: 540ada652f163d740a0e9d21fdf8176a, type: 2}
 --- !u!136 &5072761539243199055
 CapsuleCollider:
   m_ObjectHideFlags: 0

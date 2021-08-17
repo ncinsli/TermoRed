@@ -15,7 +15,9 @@ namespace Behaviours
         {
             if (Input.GetKey(_context.settings.shootKey))
             {
-                var bullet = GameObject.Instantiate(_context.settings.bulletPrefab, _context.gameObject.transform.position + _context.directionCounter.forward, _context.settings.bulletPrefab.transform.rotation);
+                var bullet = GameObject.Instantiate(_context.settings.bulletPrefab, _context.gameObject.transform.position + _context.directionCounter.rawForward, 
+                    Quaternion.LookRotation(_context.directionCounter.rawForward) * Quaternion.Euler(90f, 0f, 0f));
+                
                 var bulletRealisation = bullet.GetComponent<BulletRealisation>();
                 if (bulletRealisation == null) Debug.Log("<color=red>NULLREFERENCE</color> bullet prefab doesn't have BulletRealisation attached!");
 
