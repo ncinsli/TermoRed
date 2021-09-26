@@ -1,5 +1,5 @@
 ﻿using Definitions;
-using Settings;
+using ExternalDependencies;
 using UnityEngine;
 
 namespace Contexts
@@ -8,14 +8,16 @@ namespace Contexts
     public class ViewBehaviourContext : IBehaviourContext
     {
         public readonly GameObject gameObject;
+
+        public BehaviourRealisation realisation { get; set; }
         public Transform transform => gameObject.transform;
         public Vector3 currentRotation { get; set; }
 
         private float _speed;
-        public ViewBehaviourContext(GameObject obj, ViewBehaviourSettings settings)
+        public ViewBehaviourContext(ViewDependencies deps)
         {
-            _speed = settings.speed;
-            gameObject = obj;
+            _speed = deps.speed;
+            gameObject = deps.gameObject;
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using Modules;
 using UnityEngine;
 
-namespace Settings
+namespace ExternalDependencies
 {
     [CreateAssetMenu]
-    public class MoveBehaviourSettings : ScriptableObject
+    public class MoveDependencies : ScriptableObject
     {
         public float maxSpeed = 2.7f;
         public float jumpPower = 1f;
+        public GameObject gameObject;
     }
 }

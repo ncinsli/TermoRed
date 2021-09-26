@@ -1,20 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 using Contexts;
+using Definitions;
 using Modules;
-using Settings;
+using ExternalDependencies;
 using UnityEngine;
+using Realisations;
 
 namespace Realisations
 {
-    public class PlayerHeadRealisation : MonoBehaviour
+    public class PlayerHeadRealisation : BehaviourRealisation
     {
         private ViewBehaviour _viewBehaviour;
         [SerializeField] private ViewBehaviourContext _viewBehaviourContext;
-        public ViewBehaviourSettings _viewBehaviourSettings;
+        public ViewDependencies _viewDependencies;
 
         private void Start()
         {
-            _viewBehaviourContext = new ViewBehaviourContext(gameObject, _viewBehaviourSettings);
+            SetupContainers(_viewDependencies);
+            
+            _viewBehaviourContext = new ViewBehaviourContext(_viewDependencies);
             _viewBehaviour = new ViewBehaviour();
             _viewBehaviour.BindContext(_viewBehaviourContext);
         }
@@ -22,6 +27,12 @@ namespace Realisations
         private void Update()
         {
             _viewBehaviour.Update();
+        }
+
+        public override void SetupContainers(params ScriptableObject[] dependencies)
+        {
+            var deps = dependencies[0] as ViewDependencies;
+            deps.gameObject = gameObject;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Definitions;
-using Settings;
+using ExternalDependencies;
 using UnityEngine;
 
 namespace Contexts
@@ -7,9 +7,10 @@ namespace Contexts
     [System.Serializable]
     public class InputBehaviourContext : IBehaviourContext
     {
+        public BehaviourRealisation realisation { get; set; }
         public readonly GameObject gameObject;
         public Vector3 axis { get; set; }
         public bool isJumping;
-        public InputBehaviourContext(GameObject t) => gameObject = t;
+        public InputBehaviourContext(InputDependencies deps) => gameObject = deps.gameObject;
     }
 }

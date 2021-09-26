@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d708720355ea42419121f2682ecf83a, type: 3}
-  m_Name: AkBulletBehaviourSettings
+  m_Name: AK47Bullet
   m_EditorClassIdentifier: 
   speed: 100
   destroyableBy:
     serializedVersion: 2
     m_Bits: 64
+  realisation: {fileID: 0}
+  gameObject: {fileID: 0}

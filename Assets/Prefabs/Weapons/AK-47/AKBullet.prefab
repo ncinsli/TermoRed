@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5382768391460696822}
   - component: {fileID: 5072761539243199055}
   - component: {fileID: 6442428747680566371}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AKBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletBehaviourContext:
     directionCounter: {fileID: 0}
-  _bulletBehaviourSettings: {fileID: 11400000, guid: 540ada652f163d740a0e9d21fdf8176a, type: 2}
+  _bulletDependencies: {fileID: 11400000, guid: 756aba9c721622a4c85f1abc0c2b31cd, type: 2}
 --- !u!136 &5072761539243199055
 CapsuleCollider:
   m_ObjectHideFlags: 0

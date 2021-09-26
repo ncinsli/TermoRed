@@ -4,19 +4,22 @@ using UnityEngine;
 using Definitions;
 using Contexts;
 using Behaviours;
-using Settings;
+using ExternalDependencies;
 
 public class WeaponRealisation : BehaviourRealisation
 {
     [SerializeField] private ShootBehaviourContext _shootBehaviourContext;
     private ShootBehaviour _shootBehaviour;
     public DirectionCounter directionCounter;
-    public ShootBehaviourSettings shootBehaviourSettings;
+    public ShootDependencies shootDependencies;
     private void Start()
     {
-        _shootBehaviourContext = new ShootBehaviourContext(gameObject, shootBehaviourSettings);
+        SetupContainers(shootDependencies);
+        
+        _shootBehaviourContext = new ShootBehaviourContext(shootDependencies);
         _shootBehaviourContext.directionCounter = directionCounter;
         _shootBehaviourContext.weaponRealisation = this;
+
         _shootBehaviour = new ShootBehaviour().BindContext(_shootBehaviourContext) as ShootBehaviour;
     }
 
@@ -24,6 +27,10 @@ public class WeaponRealisation : BehaviourRealisation
     {
         _shootBehaviour.Update();
     }
-    
-    public void Destroy() => Destroy(gameObject);
+
+    public override void SetupContainers(params ScriptableObject[] dependencies)
+    {
+        var deps = dependencies[0] as ShootDependencies;
+        deps.gameObject = gameObject;
+    }
 }

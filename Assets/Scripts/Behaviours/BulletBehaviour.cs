@@ -15,15 +15,16 @@ namespace Behaviours
 
         private void OnCollisionEnter(Collision col)
         {
-            if ((1 << col.gameObject.layer & _context.settings.destroyableBy.value) == (1 << col.gameObject.layer))
-                _context.gameObject.GetComponent<BulletRealisation>().Destroy();
+            if ((1 << col.gameObject.layer & _context.externalDependencies.destroyableBy.value) != (1 << col.gameObject.layer))
+                _context.realisation.Destroy();
         }
 
         public IBehaviour BindContext(IBehaviourContext context)
         {
             _context = context as BulletBehaviourContext;
             _context.onCollision += OnCollisionEnter;
-            _context.rigidbody.velocity = _context.directionCounter.rawForward * _context.settings.speed;
+            _context.rigidbody.velocity = _context.directionCounter.rawForward * _context.externalDependencies.speed;
+            Debug.Log($"Successfully binded context of Bullet Behaviour");
 
             return this;
         }

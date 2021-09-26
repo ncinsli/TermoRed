@@ -8,9 +8,10 @@ namespace Definitions
 {
     public abstract class BehaviourRealisation : MonoBehaviour
     {
+        public virtual void SetupContainers(params ScriptableObject[] dependencies){}
         /*
-         * Here was the legacy functionality of handling Update() methods of IBehaviours
-         * But I decided that it would be better to let every realisation call Update by itself 
+         * Implementing some MonoBehaviour functions as methods (not globally)
          */
+        public void Destroy() => Destroy(gameObject);
     }
 }

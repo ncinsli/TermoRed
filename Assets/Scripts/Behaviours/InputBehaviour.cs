@@ -22,6 +22,7 @@ namespace Behaviours
         public IBehaviour BindContext(IBehaviourContext context)
         {
             _context = context as InputBehaviourContext;
+            Debug.Log($"Successfully binded context of Input Behaviour");
             return this;
         }
     }

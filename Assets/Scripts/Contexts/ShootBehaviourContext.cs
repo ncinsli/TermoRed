@@ -1,21 +1,26 @@
 using System;
 using UnityEngine;
 using System.Collections;
-using Settings;
+using ExternalDependencies;
 using Definitions;
+using Realisations;
+using UnityEngine.VFX;
 
 namespace Contexts
 {
     public class ShootBehaviourContext : IBehaviourContext
     {
+        public VisualEffect smokeEffect;
+        public BehaviourRealisation realisation { get; set; }
         public GameObject gameObject;
-        public ShootBehaviourSettings settings;
+        public ShootDependencies externalDependencies;
         public DirectionCounter directionCounter;
         public WeaponRealisation weaponRealisation;
-        public ShootBehaviourContext(GameObject obj, ShootBehaviourSettings settings)
+        public ShootBehaviourContext(ShootDependencies deps)
         {
-            gameObject = obj;
-            this.settings = settings;
+            gameObject = deps.gameObject;
+            this.externalDependencies = deps;
+            this.smokeEffect = deps.smokeEffect;
         }
     }
 }

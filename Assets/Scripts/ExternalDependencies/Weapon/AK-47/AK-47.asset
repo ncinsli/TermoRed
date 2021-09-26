@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3b078d6dea61d014b9954052a0004a2f, type: 3}
-  m_Name: AkBehaviourSettings
+  m_Name: AK-47
   m_EditorClassIdentifier: 
   shootKey: 323
   bulletPrefab: {fileID: 8823261667794607850, guid: 03aebdb6f44924e4ca016aad800b3296, type: 3}

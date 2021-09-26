@@ -1,5 +1,5 @@
 ﻿using Definitions;
-using Settings;
+using ExternalDependencies;
 using UnityEngine;
 
 namespace Contexts
@@ -7,6 +7,7 @@ namespace Contexts
     [System.Serializable]
     public class MoveBehaviourContext : IBehaviourContext
     {
+        public BehaviourRealisation realisation { get; set; }
         public readonly GameObject gameObject;
         public Vector3 direction;
         public Rigidbody body;
@@ -17,12 +18,12 @@ namespace Contexts
         public bool onGround;
         public DirectionCounter directionCounter;
 
-        public MoveBehaviourContext(GameObject t, MoveBehaviourSettings settings)
+        public MoveBehaviourContext(MoveDependencies deps)
         {
-            gameObject = t;
+            gameObject = deps.gameObject;
             body = gameObject.GetComponent<Rigidbody>();
-            maxSpeed = settings.maxSpeed;
-            jumpPower = settings.jumpPower;
+            maxSpeed = deps.maxSpeed;
+            jumpPower = deps.jumpPower;
         }
     }
 }

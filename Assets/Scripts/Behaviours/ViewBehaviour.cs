@@ -20,6 +20,7 @@ namespace Modules
         public IBehaviour BindContext(IBehaviourContext context)
         {
             _context = context as ViewBehaviourContext;
+            Debug.Log($"Successfully binded context of View Behaviour");
             return this;
         }
     }

@@ -23,7 +23,7 @@ namespace Behaviours
         public IBehaviour BindContext(IBehaviourContext context)
         {
             _context = context as MoveBehaviourContext;
-            Debug.Log($"Successfully binded context");
+            Debug.Log($"Successfully binded context of Move Behaviour");
             return this;
         } 
     }

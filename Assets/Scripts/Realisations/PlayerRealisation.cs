@@ -1,6 +1,6 @@
 using Users;
 using Contexts;
-using Settings;
+using ExternalDependencies;
 using Behaviours;
 using Definitions;
 using UnityEngine;
@@ -11,13 +11,13 @@ namespace Realisations
     {
         private MoveBehaviour _moveBehaviour;
         [SerializeField] private MoveBehaviourContext _moveBehaviourContext;
-        public MoveBehaviourSettings moveSettings;
+        public MoveDependencies moveDependencies;
 
         [Space][Space][Space][Space][Space]
         
         private InputBehaviour _inputBehaviour;
         [SerializeField] private InputBehaviourContext _inputBehaviourContext;
-        public InputBehaviourSettings inputSettings;
+        public InputDependencies inputDependencies;
 
         [Space][Space][Space]
         public GroundChecker groundChecker;
@@ -25,11 +25,13 @@ namespace Realisations
         
         private void Start()
         {
-            _moveBehaviourContext = new MoveBehaviourContext(gameObject, moveSettings);
+            SetupContainers(moveDependencies, inputDependencies);
+            
+            _moveBehaviourContext = new MoveBehaviourContext(moveDependencies);
             _moveBehaviour = new MoveBehaviour().BindContext(_moveBehaviourContext) as MoveBehaviour;
             _moveBehaviourContext.directionCounter = directionCounter;
             
-            _inputBehaviourContext = new InputBehaviourContext(gameObject);
+            _inputBehaviourContext = new InputBehaviourContext(inputDependencies);
             _inputBehaviour = new InputBehaviour().BindContext(_inputBehaviourContext) as InputBehaviour;
         }
 
@@ -45,6 +47,16 @@ namespace Realisations
             _moveBehaviourContext.onGround = groundChecker.touchingGround;
             _moveBehaviourContext.deltaTime = Time.deltaTime;
             _moveBehaviour.FixedUpdate();
+        }
+
+        public override void SetupContainers(params ScriptableObject[] dependencies)
+        {
+            var moveDeps = dependencies[0] as MoveDependencies;
+            var inputDeps = dependencies[1] as InputDependencies;
+
+            moveDeps.gameObject = gameObject;
+            inputDeps.gameObject = gameObject;
+
         }
     }
 }

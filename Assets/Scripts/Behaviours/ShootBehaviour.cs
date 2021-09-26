@@ -13,9 +13,9 @@ namespace Behaviours
         public void FixedUpdate(){}
         public void Update()
         {
-            if (Input.GetKey(_context.settings.shootKey))
+            if (Input.GetKey(_context.externalDependencies.shootKey))
             {
-                var bullet = GameObject.Instantiate(_context.settings.bulletPrefab, _context.gameObject.transform.position + _context.directionCounter.rawForward, 
+                var bullet = GameObject.Instantiate(_context.externalDependencies.bulletPrefab, _context.gameObject.transform.position + _context.directionCounter.rawForward, 
                     Quaternion.LookRotation(_context.directionCounter.rawForward) * Quaternion.Euler(90f, 0f, 0f));
                 
                 var bulletRealisation = bullet.GetComponent<BulletRealisation>();
@@ -28,6 +28,7 @@ namespace Behaviours
         public IBehaviour BindContext(IBehaviourContext context)
         {
             this._context = context as ShootBehaviourContext;
+            Debug.Log($"Successfully binded context of Shoot Behaviour");
             return this;
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Definitions;
-using Settings;
+using ExternalDependencies;
+using Realisations;
 using UnityEngine;
 
 namespace Contexts
@@ -13,13 +14,15 @@ namespace Contexts
 
         public DirectionCounter directionCounter;
 
-        public BulletBehaviourSettings settings { get; set; }
+        public BehaviourRealisation realisation { get; set; }
+        public BulletDependencies externalDependencies { get; set; }
         
         public Action<Collision> onCollision;
-        public BulletBehaviourContext(GameObject t, BulletBehaviourSettings s)
+        public BulletBehaviourContext(BulletDependencies d)
         {
-            gameObject = t;
-            settings = s;
+            gameObject = d.gameObject;
+            externalDependencies = d;
+            realisation = d.realisation;
             rigidbody = gameObject.GetComponent<Rigidbody>();
         }
     }
