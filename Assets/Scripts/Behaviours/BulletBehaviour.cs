@@ -26,7 +26,8 @@ namespace Behaviours
         public IBehaviour BindDependencies(IBehaviourDependency d)
         {
             _dependencies = d as BulletDependencies;
-            _dependencies.rigidbody.velocity = _dependencies.directionCounter.rawForward * _dependencies.speed;
+            if (_dependencies.directionCounter)
+                _dependencies.rigidbody.velocity = _dependencies.directionCounter.rawForward * _dependencies.speed;
             Debug.Log($"Successfully binded dependency of Bullet Behaviour");
             (_dependencies.realisation as BulletRealisation).Destroy(5f);
             return this;

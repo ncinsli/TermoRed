@@ -46,8 +46,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfe5a20b98af7f74fb8c4e85a83a4759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _animator: {fileID: 0}
+  _shootAnimation: {fileID: 0}
   directionCounter: {fileID: 0}
-  shootDependencies: {fileID: 11400000, guid: 2234cbc784676a14d84c01e84d0b59fd, type: 2}
+  _shootDependencies: {fileID: 11400000, guid: 2234cbc784676a14d84c01e84d0b59fd, type: 2}
+  _weaponAnimationDependencies: {fileID: 0}
+  sleeveSpawnpoint: {fileID: 0}
+  bulletSpawnpoint: {fileID: 0}
 --- !u!1 &4980378642966522953
 GameObject:
   m_ObjectHideFlags: 0

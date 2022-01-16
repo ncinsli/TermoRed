@@ -18,7 +18,7 @@ namespace Behaviours
             if (Input.GetKey(_dependencies.shootKey))
             {
                 var bullet = GameObject.Instantiate(_dependencies.bulletPrefab, _dependencies.bulletSpawnpoint.position, Quaternion.LookRotation(_dependencies.directionCounter.rawForward) * Quaternion.Euler(-90f, 0f, 0f));
-                _dependencies.onShoot();
+                _dependencies.animationBehaviour.OnShoot();
                 if (_dependencies.sleevePrefab)
                 {
                     count = ( count + 1 ) % _dependencies.sleeveFrequency;
@@ -28,9 +28,17 @@ namespace Behaviours
                 }
                 
                 var bulletRealisation = bullet.GetComponent<BulletRealisation>();
-                if (bulletRealisation == null) Debug.Log("<color=red>NULLREFERENCE</color> bullet prefab doesn't have BulletRealisation attached!");
+                if (bulletRealisation == null)
+                    Debug.Log("<color=red>NULLREFERENCE</color> bullet prefab doesn't have BulletRealisation attached!");
+                bulletRealisation.InjectWeapon(_dependencies.realisation as WeaponRealisation);
+            }
 
-                bulletRealisation.weaponShooted = _dependencies.realisation as WeaponRealisation;
+            if (Input.GetKeyUp(_dependencies.shootKey))
+                _dependencies.animationBehaviour.OnIdle();
+
+            if (Input.GetKeyDown(_dependencies.reloadKey))
+            {
+                _dependencies.animationBehaviour.OnReload();
             }
         }
 
@@ -38,6 +46,7 @@ namespace Behaviours
         {
             this._dependencies = d as ShootDependencies;
             Debug.Log($"Successfully binded dependency of Shoot Behaviour");
+            Debug.Log(_dependencies.animationBehaviour);
             return this;
         }
     }

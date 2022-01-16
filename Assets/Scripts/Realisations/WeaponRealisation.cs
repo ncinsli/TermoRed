@@ -19,12 +19,13 @@ public class WeaponRealisation : BehaviourRealisation
     
     public Transform sleeveSpawnpoint;
     public Transform bulletSpawnpoint;
-    private void Start()
+    private void Awake()
     {
-        SetupContainers(_shootDependencies, _weaponAnimationDependencies);
-        
-        _shootBehaviour = new ShootBehaviour().BindDependencies(_shootDependencies) as ShootBehaviour;
+        _shootBehaviour = new ShootBehaviour();
         _weaponAnimationBehaviour = new WeaponAnimationBehaviour().BindDependencies(_weaponAnimationDependencies) as WeaponAnimationBehaviour;
+
+        SetupContainers(_shootDependencies, _weaponAnimationDependencies);
+        _shootBehaviour.BindDependencies(_shootDependencies);
     }
 
     private void Update()
@@ -47,13 +48,12 @@ public class WeaponRealisation : BehaviourRealisation
         shootDependencies.directionCounter = directionCounter;
         shootDependencies.bulletSpawnpoint = bulletSpawnpoint;
         shootDependencies.sleeveSpawnpoint = sleeveSpawnpoint;
-
+        shootDependencies.animationBehaviour = _weaponAnimationBehaviour;
+        Debug.Log(shootDependencies.animationBehaviour);
         shootDependencies.realisation = this;
 
         var animationDependencies = dependencies[1] as WeaponAnimationDependencies;
         animationDependencies.animator = _animator;
-        animationDependencies.shootAnimation = _shootAnimation;
-        _shootDependencies.onShoot = () => animationDependencies.shootInjected();
+        animationDependencies.realisation = this;
     }
-    private void OnDestroy() => _shootDependencies.onShoot = null;
 }

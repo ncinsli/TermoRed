@@ -11,6 +11,7 @@ namespace ExternalDependencies
     [CreateAssetMenu]
     public class BulletDependencies : ScriptableObject, IBehaviourDependency
     {
+        public WeaponRealisation weaponShooted { get; set; }
         public GameObject gameObject { get; set; }
         public Rigidbody rigidbody { get; set; }
 

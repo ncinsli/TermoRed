@@ -17,15 +17,16 @@ namespace Behaviours
             
         }
 
-        private void OnShoot()
-        {
-            deps.animator.Play(deps.shootAnimation.name);
-        }
+        public void OnShoot() => deps.animator.SetInteger("AnimationId", 1);
+
+        public void OnReload() => deps.animator.SetInteger("AnimationId", 2);
+
+        public void OnIdle() => deps.animator.SetInteger("AnimationId", 0);
 
         public IBehaviour BindDependencies(IBehaviourDependency context)
         {   
             deps = context as WeaponAnimationDependencies;
-            deps.shootInjected = OnShoot;
+            Debug.Log(deps.animator);
             return this;
         }
     }

@@ -1,4 +1,5 @@
 using System;
+using Behaviours;
 using Definitions;
 using JetBrains.Annotations;
 using Modules;
@@ -10,11 +11,12 @@ namespace ExternalDependencies
     [CreateAssetMenu]
     public class ShootDependencies : ScriptableObject, IBehaviourDependency
     {
-        public Action onShoot;
         public KeyCode shootKey;
+        public KeyCode reloadKey;
         public GameObject bulletPrefab;
         public Transform bulletSpawnpoint;
-        
+        public WeaponAnimationBehaviour animationBehaviour;
+
         [CanBeNull] public GameObject sleevePrefab;
         public VisualEffect smokeEffect;
         public GameObject gameObject { get; set; }

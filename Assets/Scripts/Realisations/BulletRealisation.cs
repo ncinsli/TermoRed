@@ -11,15 +11,19 @@ namespace Realisations
     {
         [SerializeField] private BulletDependencies _bulletDependencies;
         private BulletBehaviour _bulletBehaviour;
-        public WeaponRealisation weaponShooted;
-        private void Start()
+        private void Awake()
         {
             SetupContainers(_bulletDependencies);
-            
+
             _bulletBehaviour = new BulletBehaviour().BindDependencies(_bulletDependencies) as BulletBehaviour;
         }
 
-        private void OnCollisionEnter(Collision collision) => _bulletBehaviour.OnCollisionEnter(collision);
+        private void OnCollisionEnter(Collision collision) => _bulletBehaviour?.OnCollisionEnter(collision);
+
+        public void InjectWeapon(WeaponRealisation w)
+        {
+            _bulletDependencies.weaponShooted = w;
+        }
 
         public void Destroy(float time) => Destroy(gameObject, time);
 
@@ -30,7 +34,7 @@ namespace Realisations
             deps.realisation = this;
             deps.gameObject = gameObject;
             deps.rigidbody = gameObject.GetComponent<Rigidbody>();
-            deps.directionCounter = weaponShooted.directionCounter;
+            _bulletDependencies.directionCounter = _bulletDependencies.weaponShooted.directionCounter;
         }
         
     }
