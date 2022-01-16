@@ -1,28 +1,28 @@
 ﻿using System;
-using Contexts;
 using Definitions;
+using ExternalDependencies;
 using UnityEngine;
 
 namespace Behaviours
 {
     public class InputBehaviour : IBehaviour
     {
-        private InputBehaviourContext _context = default;
+        private InputDependencies _dependencies = default;
 
         public void Update()
         {
-            _context.axis = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"),
+            _dependencies.axis = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"),
                 Input.GetAxisRaw("Vertical"));
 
-            _context.isJumping = Convert.ToBoolean(_context.axis.y);
+            _dependencies.isJumping = Convert.ToBoolean(_dependencies.axis.y);
         }
 
         public void FixedUpdate(){}
 
-        public IBehaviour BindContext(IBehaviourContext context)
+        public IBehaviour BindDependencies(IBehaviourDependency d)
         {
-            _context = context as InputBehaviourContext;
-            Debug.Log($"Successfully binded context of Input Behaviour");
+            _dependencies = d as InputDependencies;
+            Debug.Log($"Successfully binded dependency of Input Behaviour");
             return this;
         }
     }

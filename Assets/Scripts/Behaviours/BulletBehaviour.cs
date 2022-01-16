@@ -1,5 +1,5 @@
-﻿using Contexts;
-using Definitions;
+﻿using Definitions;
+using ExternalDependencies;
 using Realisations;
 using UnityEngine;
 
@@ -7,25 +7,28 @@ namespace Behaviours
 {
     public class BulletBehaviour : IBehaviour
     {
-        private BulletBehaviourContext _context;
+        private BulletDependencies _dependencies;
         
         public void Update(){}
 
         public void FixedUpdate(){}
 
-        private void OnCollisionEnter(Collision col)
+        public void OnCollisionEnter(Collision col)
         {
-            if ((1 << col.gameObject.layer & _context.externalDependencies.destroyableBy.value) != (1 << col.gameObject.layer))
-                _context.realisation.Destroy();
+            if (((1 << col.gameObject.layer) & _dependencies.destroyableBy.value) > 0)
+            {
+                if (_dependencies.realisation == null) return;
+                var r = _dependencies.realisation as BulletRealisation;
+                r.Destroy(0f);
+            }
         }
 
-        public IBehaviour BindContext(IBehaviourContext context)
+        public IBehaviour BindDependencies(IBehaviourDependency d)
         {
-            _context = context as BulletBehaviourContext;
-            _context.onCollision += OnCollisionEnter;
-            _context.rigidbody.velocity = _context.directionCounter.rawForward * _context.externalDependencies.speed;
-            Debug.Log($"Successfully binded context of Bullet Behaviour");
-
+            _dependencies = d as BulletDependencies;
+            _dependencies.rigidbody.velocity = _dependencies.directionCounter.rawForward * _dependencies.speed;
+            Debug.Log($"Successfully binded dependency of Bullet Behaviour");
+            (_dependencies.realisation as BulletRealisation).Destroy(5f);
             return this;
         }
 

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Contexts;
 using Definitions;
 using Modules;
 using ExternalDependencies;
@@ -12,27 +11,26 @@ namespace Realisations
     public class PlayerHeadRealisation : BehaviourRealisation
     {
         private ViewBehaviour _viewBehaviour;
-        [SerializeField] private ViewBehaviourContext _viewBehaviourContext;
+        [SerializeField] private ViewDependencies viewDependencies;
         public ViewDependencies _viewDependencies;
 
         private void Start()
         {
             SetupContainers(_viewDependencies);
             
-            _viewBehaviourContext = new ViewBehaviourContext(_viewDependencies);
-            _viewBehaviour = new ViewBehaviour();
-            _viewBehaviour.BindContext(_viewBehaviourContext);
+            _viewBehaviour = new ViewBehaviour().BindDependencies(viewDependencies) as ViewBehaviour;
         }
 
         private void Update()
         {
-            _viewBehaviour.Update();
+            _viewBehaviour?.Update();
         }
 
         public override void SetupContainers(params ScriptableObject[] dependencies)
         {
             var deps = dependencies[0] as ViewDependencies;
             deps.gameObject = gameObject;
+            deps.realisation = this;
         }
     }
 }

@@ -2,35 +2,58 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Definitions;
-using Contexts;
 using Behaviours;
 using ExternalDependencies;
 
 public class WeaponRealisation : BehaviourRealisation
 {
-    [SerializeField] private ShootBehaviourContext _shootBehaviourContext;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private AnimationClip _shootAnimation;
+    
     private ShootBehaviour _shootBehaviour;
+    private WeaponAnimationBehaviour _weaponAnimationBehaviour;
+    
     public DirectionCounter directionCounter;
-    public ShootDependencies shootDependencies;
+    [SerializeField] private ShootDependencies _shootDependencies;
+    [SerializeField] private WeaponAnimationDependencies _weaponAnimationDependencies;
+    
+    public Transform sleeveSpawnpoint;
+    public Transform bulletSpawnpoint;
     private void Start()
     {
-        SetupContainers(shootDependencies);
+        SetupContainers(_shootDependencies, _weaponAnimationDependencies);
         
-        _shootBehaviourContext = new ShootBehaviourContext(shootDependencies);
-        _shootBehaviourContext.directionCounter = directionCounter;
-        _shootBehaviourContext.weaponRealisation = this;
-
-        _shootBehaviour = new ShootBehaviour().BindContext(_shootBehaviourContext) as ShootBehaviour;
+        _shootBehaviour = new ShootBehaviour().BindDependencies(_shootDependencies) as ShootBehaviour;
+        _weaponAnimationBehaviour = new WeaponAnimationBehaviour().BindDependencies(_weaponAnimationDependencies) as WeaponAnimationBehaviour;
     }
 
     private void Update()
     {
-        _shootBehaviour.Update();
+        _shootBehaviour?.Update();
+        _weaponAnimationBehaviour?.Update();
+    }
+
+    private void FixedUpdate()
+    {
+        _weaponAnimationBehaviour?.FixedUpdate();
+        _shootBehaviour?.FixedUpdate();
     }
 
     public override void SetupContainers(params ScriptableObject[] dependencies)
     {
-        var deps = dependencies[0] as ShootDependencies;
-        deps.gameObject = gameObject;
+        var shootDependencies = dependencies[0] as ShootDependencies;
+        shootDependencies.gameObject = gameObject;
+        
+        shootDependencies.directionCounter = directionCounter;
+        shootDependencies.bulletSpawnpoint = bulletSpawnpoint;
+        shootDependencies.sleeveSpawnpoint = sleeveSpawnpoint;
+
+        shootDependencies.realisation = this;
+
+        var animationDependencies = dependencies[1] as WeaponAnimationDependencies;
+        animationDependencies.animator = _animator;
+        animationDependencies.shootAnimation = _shootAnimation;
+        _shootDependencies.onShoot = () => animationDependencies.shootInjected();
     }
+    private void OnDestroy() => _shootDependencies.onShoot = null;
 }

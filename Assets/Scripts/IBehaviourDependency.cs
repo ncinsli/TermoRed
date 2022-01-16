@@ -2,7 +2,7 @@
 
 namespace Definitions
 {
-    public interface IBehaviourContext
+    public interface IBehaviourDependency
     {
         public BehaviourRealisation realisation { get; set; }
     }

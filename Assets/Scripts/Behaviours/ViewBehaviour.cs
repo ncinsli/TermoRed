@@ -1,26 +1,26 @@
-﻿using Contexts;
-using Definitions;
+﻿using Definitions;
+using ExternalDependencies;
 using UnityEngine;
 
 namespace Modules
 {
     public class ViewBehaviour : IBehaviour
     {
-        private ViewBehaviourContext _context;
+        private ViewDependencies _dependencies;
         
         public void FixedUpdate(){}
 
         public void Update()
         {
-            _context.currentRotation = _context.transform.eulerAngles;
-            _context.currentRotation += new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0f);
-            _context.transform.rotation = Quaternion.Euler(_context.currentRotation);
+            _dependencies.currentRotation = _dependencies.transform.eulerAngles;
+            _dependencies.currentRotation += new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0f);
+            _dependencies.transform.rotation = Quaternion.Euler(_dependencies.currentRotation);
         }
 
-        public IBehaviour BindContext(IBehaviourContext context)
+        public IBehaviour BindDependencies(IBehaviourDependency d)
         {
-            _context = context as ViewBehaviourContext;
-            Debug.Log($"Successfully binded context of View Behaviour");
+            _dependencies = d as ViewDependencies;
+            Debug.Log($"Successfully binded dependency of View Behaviour");
             return this;
         }
     }

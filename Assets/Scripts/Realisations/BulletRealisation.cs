@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Behaviours;
-using Contexts;
 using Definitions;
 using ExternalDependencies;
 using UnityEngine;
@@ -10,21 +9,19 @@ namespace Realisations
 {
     public class BulletRealisation : BehaviourRealisation
     {
-        [SerializeField] private BulletBehaviourContext _bulletBehaviourContext;
         [SerializeField] private BulletDependencies _bulletDependencies;
         private BulletBehaviour _bulletBehaviour;
-        public WeaponRealisation weaponShooted { get; set; }
+        public WeaponRealisation weaponShooted;
         private void Start()
         {
-            SetupContainers( _bulletDependencies);
+            SetupContainers(_bulletDependencies);
             
-            _bulletBehaviourContext = new BulletBehaviourContext(_bulletDependencies);
-            _bulletBehaviourContext.directionCounter = weaponShooted.directionCounter;
-            _bulletBehaviour = new BulletBehaviour().BindContext(_bulletBehaviourContext) as BulletBehaviour;
+            _bulletBehaviour = new BulletBehaviour().BindDependencies(_bulletDependencies) as BulletBehaviour;
         }
 
-        private void OnCollisionEnter(Collision collision) =>
-            _bulletBehaviourContext.onCollision?.Invoke(collision);
+        private void OnCollisionEnter(Collision collision) => _bulletBehaviour.OnCollisionEnter(collision);
+
+        public void Destroy(float time) => Destroy(gameObject, time);
 
         public override void SetupContainers(params ScriptableObject[] dependencies)
         {
@@ -32,6 +29,8 @@ namespace Realisations
             var deps = dependencies[0] as BulletDependencies;
             deps.realisation = this;
             deps.gameObject = gameObject;
+            deps.rigidbody = gameObject.GetComponent<Rigidbody>();
+            deps.directionCounter = weaponShooted.directionCounter;
         }
         
     }

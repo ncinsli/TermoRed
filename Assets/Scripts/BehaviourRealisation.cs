@@ -1,5 +1,4 @@
-﻿using Contexts;
-using Behaviours;
+﻿using Behaviours;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,6 +11,5 @@ namespace Definitions
         /*
          * Implementing some MonoBehaviour functions as methods (not globally)
          */
-        public void Destroy() => Destroy(gameObject);
     }
 }

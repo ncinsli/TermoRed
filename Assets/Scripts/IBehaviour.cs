@@ -11,6 +11,6 @@
     {
         void Update();
         void FixedUpdate();
-        IBehaviour BindContext(IBehaviourContext context);
+        IBehaviour BindDependencies(IBehaviourDependency context);
     }
 }

@@ -1,5 +1,4 @@
 using Users;
-using Contexts;
 using ExternalDependencies;
 using Behaviours;
 using Definitions;
@@ -10,13 +9,11 @@ namespace Realisations
     public class PlayerRealisation : BehaviourRealisation
     {
         private MoveBehaviour _moveBehaviour;
-        [SerializeField] private MoveBehaviourContext _moveBehaviourContext;
         public MoveDependencies moveDependencies;
 
         [Space][Space][Space][Space][Space]
         
         private InputBehaviour _inputBehaviour;
-        [SerializeField] private InputBehaviourContext _inputBehaviourContext;
         public InputDependencies inputDependencies;
 
         [Space][Space][Space]
@@ -26,27 +23,23 @@ namespace Realisations
         private void Start()
         {
             SetupContainers(moveDependencies, inputDependencies);
-            
-            _moveBehaviourContext = new MoveBehaviourContext(moveDependencies);
-            _moveBehaviour = new MoveBehaviour().BindContext(_moveBehaviourContext) as MoveBehaviour;
-            _moveBehaviourContext.directionCounter = directionCounter;
-            
-            _inputBehaviourContext = new InputBehaviourContext(inputDependencies);
-            _inputBehaviour = new InputBehaviour().BindContext(_inputBehaviourContext) as InputBehaviour;
+
+            _moveBehaviour = new MoveBehaviour().BindDependencies(moveDependencies) as MoveBehaviour;
+            _inputBehaviour = new InputBehaviour().BindDependencies(inputDependencies) as InputBehaviour;
         }
 
         public void Update()
         {
-            _moveBehaviourContext.isJumping = _inputBehaviourContext.isJumping;
-            _moveBehaviourContext.direction = _inputBehaviourContext.axis;
-            _inputBehaviour.Update();
+            moveDependencies.isJumping = inputDependencies.isJumping;
+            moveDependencies.direction = inputDependencies.axis;
+            _inputBehaviour?.Update();
         }
 
         public void FixedUpdate()
         {
-            _moveBehaviourContext.onGround = groundChecker.touchingGround;
-            _moveBehaviourContext.deltaTime = Time.deltaTime;
-            _moveBehaviour.FixedUpdate();
+            moveDependencies.onGround = groundChecker.touchingGround;
+            moveDependencies.deltaTime = Time.deltaTime;
+            _moveBehaviour?.FixedUpdate();
         }
 
         public override void SetupContainers(params ScriptableObject[] dependencies)
@@ -55,8 +48,12 @@ namespace Realisations
             var inputDeps = dependencies[1] as InputDependencies;
 
             moveDeps.gameObject = gameObject;
+            moveDeps.realisation = this;
+            moveDeps.body = GetComponent<Rigidbody>();
+            moveDeps.directionCounter = directionCounter;
+            
             inputDeps.gameObject = gameObject;
-
+            inputDeps.realisation = this;
         }
     }
 }

@@ -14,3 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootKey: 323
   bulletPrefab: {fileID: 8823261667794607850, guid: 03aebdb6f44924e4ca016aad800b3296, type: 3}
+  bulletSpawnpoint: {fileID: 0}
+  sleevePrefab: {fileID: 1879592512205306636, guid: afe8787de28c882428acc51d0907a0ea, type: 3}
+  smokeEffect: {fileID: 0}
+  sleeveFrequency: 16
+  sleeveSpawnpoint: {fileID: 0}
+  directionCounter: {fileID: 0}
