@@ -1,6 +1,6 @@
 ﻿using System;
 using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using UnityEngine;
 
 namespace Behaviours
@@ -22,7 +22,7 @@ namespace Behaviours
         public IBehaviour BindDependencies(IBehaviourDependency d)
         {
             _dependencies = d as InputDependencies;
-            Debug.Log($"Successfully binded dependency of Input Behaviour");
+
             return this;
         }
     }

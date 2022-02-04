@@ -1,7 +1,8 @@
-﻿using Definitions;
+using Definitions;
 using UnityEngine;
+using Realisations;
 
-namespace ExternalDependencies
+namespace Dependencies
 {
     [CreateAssetMenu]
     public class ViewDependencies : ScriptableObject, IBehaviourDependency

@@ -1,7 +1,8 @@
-﻿using System;
+using System;
+using System.Collections.Generic;
 using Behaviours;
 using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using UnityEngine;
 
 namespace Realisations
@@ -11,6 +12,8 @@ namespace Realisations
         [SerializeField] private SleeveDependencies _sleeveDependencies;
         private SleeveBehaviour _sleeveBehaviour { get; set; }
         [SerializeField] private float lifetime = 10f;
+
+        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_sleeveBehaviour};
 
         private void Start()
         {

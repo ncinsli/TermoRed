@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Behaviours;
 using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using UnityEngine;
 
 namespace Realisations
@@ -11,6 +11,7 @@ namespace Realisations
     {
         [SerializeField] private BulletDependencies _bulletDependencies;
         private BulletBehaviour _bulletBehaviour;
+        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_bulletBehaviour};
         private void Awake()
         {
             SetupContainers(_bulletDependencies);

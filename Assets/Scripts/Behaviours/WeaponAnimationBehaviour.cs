@@ -1,5 +1,5 @@
 ﻿using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using UnityEngine;
 
 namespace Behaviours

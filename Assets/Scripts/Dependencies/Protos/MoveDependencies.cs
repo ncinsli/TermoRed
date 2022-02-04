@@ -1,8 +1,10 @@
-﻿using Definitions;
-using Modules;
+using Definitions;
+using Behaviours;
 using UnityEngine;
+using Realisations;
 
-namespace ExternalDependencies
+
+namespace Dependencies
 {
     [CreateAssetMenu]
     public class MoveDependencies : ScriptableObject, IBehaviourDependency

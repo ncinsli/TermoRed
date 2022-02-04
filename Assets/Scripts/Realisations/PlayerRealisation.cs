@@ -1,8 +1,10 @@
 using Users;
-using ExternalDependencies;
+using Dependencies;
 using Behaviours;
 using Definitions;
 using UnityEngine;
+using UnityEditor;
+using System.Collections.Generic;
 
 namespace Realisations
 {
@@ -20,6 +22,8 @@ namespace Realisations
         public GroundChecker groundChecker;
         public DirectionCounter directionCounter;
         
+        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_moveBehaviour, _inputBehaviour};
+
         private void Start()
         {
             SetupContainers(moveDependencies, inputDependencies);

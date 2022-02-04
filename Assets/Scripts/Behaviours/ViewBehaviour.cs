@@ -1,8 +1,8 @@
 ﻿using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using UnityEngine;
 
-namespace Modules
+namespace Behaviours
 {
     public class ViewBehaviour : IBehaviour
     {
@@ -20,7 +20,7 @@ namespace Modules
         public IBehaviour BindDependencies(IBehaviourDependency d)
         {
             _dependencies = d as ViewDependencies;
-            Debug.Log($"Successfully binded dependency of View Behaviour");
+
             return this;
         }
     }

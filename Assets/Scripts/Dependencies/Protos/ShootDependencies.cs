@@ -2,11 +2,12 @@ using System;
 using Behaviours;
 using Definitions;
 using JetBrains.Annotations;
-using Modules;
+using Dependencies;
 using UnityEngine;
+using Realisations;
 using UnityEngine.VFX;
 
-namespace ExternalDependencies
+namespace Dependencies
 {
     [CreateAssetMenu]
     public class ShootDependencies : ScriptableObject, IBehaviourDependency

@@ -1,5 +1,5 @@
 ﻿using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using UnityEngine;
 
 namespace Behaviours
@@ -23,7 +23,7 @@ namespace Behaviours
         public IBehaviour BindDependencies(IBehaviourDependency d)
         {
             _dependencies = d as MoveDependencies;
-            Debug.Log($"Successfully binded dependency of Move Behaviour");
+
             return this;
         } 
     }

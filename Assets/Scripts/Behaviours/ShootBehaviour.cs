@@ -1,6 +1,6 @@
 using System;
 using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using Realisations;
 using UnityEngine;
 
@@ -17,8 +17,9 @@ namespace Behaviours
         {
             if (Input.GetKey(_dependencies.shootKey))
             {
-                var bullet = GameObject.Instantiate(_dependencies.bulletPrefab, _dependencies.bulletSpawnpoint.position, Quaternion.LookRotation(_dependencies.directionCounter.rawForward) * Quaternion.Euler(-90f, 0f, 0f));
                 _dependencies.animationBehaviour.OnShoot();
+                var bullet = GameObject.Instantiate(_dependencies.bulletPrefab, _dependencies.bulletSpawnpoint.position, Quaternion.LookRotation(_dependencies.directionCounter.rawForward) * Quaternion.Euler(-90f, 0f, 0f));
+                
                 if (_dependencies.sleevePrefab)
                 {
                     count = ( count + 1 ) % _dependencies.sleeveFrequency;
@@ -45,8 +46,7 @@ namespace Behaviours
         public IBehaviour BindDependencies(IBehaviourDependency d)
         {
             this._dependencies = d as ShootDependencies;
-            Debug.Log($"Successfully binded dependency of Shoot Behaviour");
-            Debug.Log(_dependencies.animationBehaviour);
+
             return this;
         }
     }

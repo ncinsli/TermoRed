@@ -1,5 +1,5 @@
 ﻿using Definitions;
-using ExternalDependencies;
+using Dependencies;
 using Realisations;
 using UnityEngine;
 
@@ -28,7 +28,7 @@ namespace Behaviours
             _dependencies = d as BulletDependencies;
             if (_dependencies.directionCounter)
                 _dependencies.rigidbody.velocity = _dependencies.directionCounter.rawForward * _dependencies.speed;
-            Debug.Log($"Successfully binded dependency of Bullet Behaviour");
+
             (_dependencies.realisation as BulletRealisation).Destroy(5f);
             return this;
         }

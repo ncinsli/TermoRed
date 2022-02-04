@@ -2,11 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Definitions;
+using Realisations;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.VFX;
 
-namespace ExternalDependencies
+namespace Dependencies
 {
     [CreateAssetMenu]
     public class BulletDependencies : ScriptableObject, IBehaviourDependency

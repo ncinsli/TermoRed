@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using Definitions;
+using Realisations;
 using UnityEngine;
 
-namespace ExternalDependencies
+namespace Dependencies
 {
     [CreateAssetMenu]
     public class WeaponAnimationDependencies : ScriptableObject, IBehaviourDependency
