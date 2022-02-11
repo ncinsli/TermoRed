@@ -11,9 +11,19 @@ namespace Definitions
         public virtual void SetupContainers(params ScriptableObject[] dependencies){}
 
         public List<IBehaviour> behaviours { get; protected set; }
-        public void DeactivateBehaviour(IBehaviour behaviour) => (behaviours.Find((b) => b.GetType() == behaviour.GetType())).Deactivate();
-        public void ActivateBehaviour(IBehaviour behaviour) => (behaviours.Find((b) => b.GetType() == behaviour.GetType())).Activate();
+        public void EjectBehaviour(IBehaviour behaviour) => behaviours.Remove(behaviours.Find((b) => b.GetType() == behaviour.GetType()));
         public void InjectBehaviour(IBehaviour behaviour) => behaviours.Add(behaviour);
+
+        public T TryGetDependency<T>() where T : class, IBehaviourDependency
+        {
+            T result = null;
+            behaviours.ForEach(b => 
+            {
+                var d = b.dependencies as T;
+                if (d != null) result = d;
+            });
+            return result;
+        }
 
         // Update event applied to all behaviours in this realisation that get updates
         protected Action<IUpdateReceiver> onUpdate;

@@ -4,7 +4,7 @@ using Realisations;
 
 namespace Dependencies
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName="Dependencies/View Dependencies")]
     public class ViewDependencies : ScriptableObject, IBehaviourDependency
     {
         public float speed;

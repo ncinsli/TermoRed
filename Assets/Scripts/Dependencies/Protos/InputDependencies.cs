@@ -4,7 +4,7 @@ using Realisations;
 
 namespace Dependencies
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName="Dependencies/Input Dependencies")]
     public class InputDependencies : ScriptableObject, IBehaviourDependency
     {
         public GameObject gameObject { get; set; }

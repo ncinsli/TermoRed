@@ -7,13 +7,10 @@ namespace Behaviours
     [System.Serializable]
     public class MoveBehaviour : IBehaviour, IFixedUpdateReceiver
     {
+        public IBehaviourDependency dependencies => _dependencies;
         private MoveDependencies _dependencies;
-        private bool inActive;
-
         public void FixedUpdate()
-        {
-            if (inActive) return;
-            
+        {            
             var force = (_dependencies.direction.x * _dependencies.directionCounter.right) + (_dependencies.direction.z * _dependencies.directionCounter.forward);
             
             if (_dependencies.direction.y > 0f && _dependencies.onGround) force.y = _dependencies.jumpPower;
@@ -29,17 +26,5 @@ namespace Behaviours
 
             return this;
         } 
-        
-        public IBehaviour Deactivate()
-        {
-            inActive = true;
-            return this;
-        }
-
-        public IBehaviour Activate()
-        {
-            inActive = false;
-            return this;
-        }
     }
 }

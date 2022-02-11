@@ -8,13 +8,10 @@ namespace Behaviours
     [System.Serializable]
     public class InputBehaviour : IBehaviour, IUpdateReceiver
     {
+        public IBehaviourDependency dependencies => _dependencies;
         private InputDependencies _dependencies = default;
-        private bool inActive;
-
         public void Update()
         {
-            if (inActive) return;
-
             _dependencies.axis = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"),
                 Input.GetAxisRaw("Vertical"));
 
@@ -24,18 +21,6 @@ namespace Behaviours
         {
             _dependencies = d as InputDependencies;
 
-            return this;
-        }
-        
-        public IBehaviour Deactivate()
-        {
-            inActive = true;
-            return this;
-        }
-
-        public IBehaviour Activate()
-        {
-            inActive = false;
             return this;
         }
     }

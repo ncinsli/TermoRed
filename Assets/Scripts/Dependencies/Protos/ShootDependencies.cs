@@ -9,7 +9,7 @@ using UnityEngine.VFX;
 
 namespace Dependencies
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName="Dependencies/Shoot Dependencies")]
     public class ShootDependencies : ScriptableObject, IBehaviourDependency
     {
         public KeyCode shootKey;

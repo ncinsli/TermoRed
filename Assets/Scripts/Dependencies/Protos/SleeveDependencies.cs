@@ -4,7 +4,7 @@ using Realisations;
 
 namespace Dependencies
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName="Dependencies/Sleeve Dependencies")]
     public class SleeveDependencies : ScriptableObject, IBehaviourDependency
     {
         public BehaviourRealisation realisation { get; set; }

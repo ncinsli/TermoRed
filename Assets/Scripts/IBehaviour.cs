@@ -14,8 +14,7 @@ namespace Definitions
     public interface IBehaviour
     {
         IBehaviour BindDependencies(IBehaviourDependency context);
-        IBehaviour Deactivate(); 
-        IBehaviour Activate();
+        IBehaviourDependency dependencies { get; }
     }
 
     // Something (usually behaviour) that gets updates from game loop

@@ -9,13 +9,12 @@ namespace Behaviours
     [System.Serializable]
     public class ShootBehaviour : IBehaviour, IUpdateReceiver
     {
+        public IBehaviourDependency dependencies => _dependencies;
         private ShootDependencies _dependencies { get; set; }
         private int count = 0;
-        private bool inActive;
 
         public void Update()
         {
-            if (inActive) return;
             
             if (Input.GetKey(_dependencies.shootKey))
             {
@@ -49,18 +48,6 @@ namespace Behaviours
         {
             this._dependencies = d as ShootDependencies;
 
-            return this;
-        }
-        
-        public IBehaviour Deactivate()
-        {
-            inActive = true;
-            return this;
-        }
-
-        public IBehaviour Activate()
-        {
-            inActive = false;
             return this;
         }
     }

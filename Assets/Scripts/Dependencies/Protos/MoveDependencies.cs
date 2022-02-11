@@ -6,7 +6,7 @@ using Realisations;
 
 namespace Dependencies
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu(menuName="Dependencies/Move Dependencies")]
     public class MoveDependencies : ScriptableObject, IBehaviourDependency
     {
         public float maxSpeed = 2.7f;

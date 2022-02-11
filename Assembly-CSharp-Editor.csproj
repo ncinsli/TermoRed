@@ -290,6 +290,21 @@
     <Reference Include="Newtonsoft.Json">
         <HintPath>D:\AnotherShooterBitesTheDust\AnotherShooterBitesTheDust\Library\PackageCache\com.unity.nuget.newtonsoft-json@2.0.0\Runtime\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
+        <HintPath>D:\AnotherShooterBitesTheDust\AnotherShooterBitesTheDust\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
+        <HintPath>D:\AnotherShooterBitesTheDust\AnotherShooterBitesTheDust\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenject-usage">
+        <HintPath>D:\AnotherShooterBitesTheDust\AnotherShooterBitesTheDust\Assets\Plugins\Zenject\Source\Usage\Zenject-usage.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
+        <HintPath>D:\AnotherShooterBitesTheDust\AnotherShooterBitesTheDust\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+        <HintPath>D:\AnotherShooterBitesTheDust\AnotherShooterBitesTheDust\Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Lib\Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
         <HintPath>D:\AnotherShooterBitesTheDust\AnotherShooterBitesTheDust\Library\PackageCache\com.unity.ext.nunit@1.0.6\net35\unity-custom\nunit.framework.dll</HintPath>
     </Reference>
@@ -802,6 +817,22 @@
     <ProjectReference Include="Assembly-CSharp.csproj">
       <Project>{ebac871b-99de-f4b0-26c4-b4dc9430a566}</Project>
       <Name>Assembly-CSharp</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{f21f78b4-907a-ef8b-b624-b127592e2228}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{52134032-47c6-acaa-bff2-367080f6503e}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{911dd450-09d4-8c98-4dab-4c3609cb4158}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject.csproj">
+      <Project>{9e926b25-a835-a8db-ad21-218065e9a62f}</Project>
+      <Name>Zenject</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

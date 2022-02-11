@@ -4,6 +4,6 @@ namespace Definitions
 {
     public interface IBehaviourDependency
     {
-        public BehaviourRealisation realisation { get; set; }
+        BehaviourRealisation realisation { get; set; }
     }
 }
