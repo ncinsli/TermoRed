@@ -8,42 +8,43 @@ using System.Collections.Generic;
 
 namespace Realisations
 {
+    [ExecuteInEditMode]
     public class PlayerRealisation : BehaviourRealisation
     {
-        private MoveBehaviour _moveBehaviour;
+        [SerializeField] private MoveBehaviour _moveBehaviour;
         public MoveDependencies moveDependencies;
 
-        [Space][Space][Space][Space][Space]
+        [Space]
         
-        private InputBehaviour _inputBehaviour;
+        [SerializeField] private InputBehaviour _inputBehaviour;
         public InputDependencies inputDependencies;
 
-        [Space][Space][Space]
+        [Space]
         public GroundChecker groundChecker;
-        public DirectionCounter directionCounter;
-        
-        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_moveBehaviour, _inputBehaviour};
+        public DirectionCounter directionCounter;        
 
-        private void Start()
+        private void OnEnable()
         {
             SetupContainers(moveDependencies, inputDependencies);
-
+            
             _moveBehaviour = new MoveBehaviour().BindDependencies(moveDependencies) as MoveBehaviour;
             _inputBehaviour = new InputBehaviour().BindDependencies(inputDependencies) as InputBehaviour;
-        }
+           
+            behaviours = new List<IBehaviour>{_moveBehaviour, _inputBehaviour};
 
-        public void Update()
-        {
-            moveDependencies.isJumping = inputDependencies.isJumping;
-            moveDependencies.direction = inputDependencies.axis;
-            _inputBehaviour?.Update();
-        }
+            onUpdate = behaviour => 
+            {
+                behaviour?.Update();
+                moveDependencies.isJumping = inputDependencies.isJumping;
+                moveDependencies.direction = inputDependencies.axis;
+            };
 
-        public void FixedUpdate()
-        {
-            moveDependencies.onGround = groundChecker.touchingGround;
-            moveDependencies.deltaTime = Time.deltaTime;
-            _moveBehaviour?.FixedUpdate();
+            onFixedUpdate = behaviour => 
+            {
+                behaviour?.FixedUpdate();
+                moveDependencies.onGround = groundChecker.touchingGround;
+                moveDependencies.deltaTime = Time.deltaTime;
+            };
         }
 
         public override void SetupContainers(params ScriptableObject[] dependencies)

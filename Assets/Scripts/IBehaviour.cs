@@ -1,4 +1,6 @@
-﻿namespace Definitions
+﻿using UnityEngine;
+
+namespace Definitions
 {
     /*
      * Even it is not defined in IBehaviour, every behaviour
@@ -7,10 +9,30 @@
      * Of course, I could add IBehaviourContext, but it isn't necessary to access a context
      * for the behaviour
      */
+
+    // Basic behaviour marker
     public interface IBehaviour
     {
-        void Update();
-        void FixedUpdate();
         IBehaviour BindDependencies(IBehaviourDependency context);
+        IBehaviour Deactivate(); 
+        IBehaviour Activate();
+    }
+
+    // Something (usually behaviour) that gets updates from game loop
+    public interface IUpdateReceiver
+    {
+        void Update();
+    }
+
+    // Something (usually behaviour) that gets collision enter events
+    public interface ICollisionEventReceiver
+    {
+        void OnCollisionEnter(Collision col);
+    }
+
+    // Something (usually behaviour) that gets fixed updates from game loop
+    public interface IFixedUpdateReceiver
+    {
+        void FixedUpdate();
     }
 }

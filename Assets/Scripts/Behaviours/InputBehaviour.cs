@@ -5,24 +5,37 @@ using UnityEngine;
 
 namespace Behaviours
 {
-    public class InputBehaviour : IBehaviour
+    [System.Serializable]
+    public class InputBehaviour : IBehaviour, IUpdateReceiver
     {
         private InputDependencies _dependencies = default;
+        private bool inActive;
 
         public void Update()
         {
+            if (inActive) return;
+
             _dependencies.axis = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Jump"),
                 Input.GetAxisRaw("Vertical"));
 
             _dependencies.isJumping = Convert.ToBoolean(_dependencies.axis.y);
         }
-
-        public void FixedUpdate(){}
-
         public IBehaviour BindDependencies(IBehaviourDependency d)
         {
             _dependencies = d as InputDependencies;
 
+            return this;
+        }
+        
+        public IBehaviour Deactivate()
+        {
+            inActive = true;
+            return this;
+        }
+
+        public IBehaviour Activate()
+        {
+            inActive = false;
             return this;
         }
     }

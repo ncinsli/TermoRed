@@ -11,23 +11,18 @@ namespace Realisations
     {
         [SerializeField] private BulletDependencies _bulletDependencies;
         private BulletBehaviour _bulletBehaviour;
-        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_bulletBehaviour};
         private void Awake()
         {
             SetupContainers(_bulletDependencies);
 
             _bulletBehaviour = new BulletBehaviour().BindDependencies(_bulletDependencies) as BulletBehaviour;
+
+            behaviours = new List<IBehaviour>{_bulletBehaviour};
+
+            onCollisionEnter = (behaviour, collision) => behaviour.OnCollisionEnter(collision);
         }
-
-        private void OnCollisionEnter(Collision collision) => _bulletBehaviour?.OnCollisionEnter(collision);
-
-        public void InjectWeapon(WeaponRealisation w)
-        {
-            _bulletDependencies.weaponShooted = w;
-        }
-
+        public void InjectWeapon(WeaponRealisation w) => _bulletDependencies.weaponShooted = w;
         public void Destroy(float time) => Destroy(gameObject, time);
-
         public override void SetupContainers(params ScriptableObject[] dependencies)
         {
             // In our case we need to setup only one container

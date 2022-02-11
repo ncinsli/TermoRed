@@ -13,19 +13,12 @@ namespace Realisations
         private SleeveBehaviour _sleeveBehaviour { get; set; }
         [SerializeField] private float lifetime = 10f;
 
-        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_sleeveBehaviour};
-
         private void Start()
         {
             SetupContainers(_sleeveDependencies);
             _sleeveBehaviour = new SleeveBehaviour().BindDependencies(_sleeveDependencies) as SleeveBehaviour;
+            behaviours = new List<IBehaviour>{_sleeveBehaviour};
         }
-
-        private void OnTriggerEnter(Collider other)
-        {
-            _sleeveBehaviour.OnTriggerEnter(other);
-        } 
-
         public void Destroy(float time) => Destroy(gameObject, time);
         private void SetupContainers(params IBehaviourDependency[] dependencies)
         {

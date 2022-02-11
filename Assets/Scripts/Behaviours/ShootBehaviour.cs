@@ -7,14 +7,16 @@ using UnityEngine;
 namespace Behaviours
 {
     [System.Serializable]
-    public class ShootBehaviour : IBehaviour
+    public class ShootBehaviour : IBehaviour, IUpdateReceiver
     {
         private ShootDependencies _dependencies { get; set; }
-        public void FixedUpdate(){}
         private int count = 0;
-        
+        private bool inActive;
+
         public void Update()
         {
+            if (inActive) return;
+            
             if (Input.GetKey(_dependencies.shootKey))
             {
                 _dependencies.animationBehaviour.OnShoot();
@@ -47,6 +49,18 @@ namespace Behaviours
         {
             this._dependencies = d as ShootDependencies;
 
+            return this;
+        }
+        
+        public IBehaviour Deactivate()
+        {
+            inActive = true;
+            return this;
+        }
+
+        public IBehaviour Activate()
+        {
+            inActive = false;
             return this;
         }
     }

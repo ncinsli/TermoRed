@@ -12,18 +12,16 @@ namespace Realisations
     {
         private ViewBehaviour _viewBehaviour;
         public ViewDependencies _viewDependencies;
-        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_viewBehaviour};
 
         private void Start()
         {
             SetupContainers(_viewDependencies);
-            
-            _viewBehaviour = new ViewBehaviour().BindDependencies(_viewDependencies) as ViewBehaviour;
-        }
 
-        private void Update()
-        {
-            _viewBehaviour?.Update();
+            _viewBehaviour = new ViewBehaviour().BindDependencies(_viewDependencies) as ViewBehaviour;
+
+            behaviours =  new List<IBehaviour>{_viewBehaviour};
+
+            onUpdate += behaviour => behaviour?.Update();
         }
 
         public override void SetupContainers(params ScriptableObject[] dependencies)

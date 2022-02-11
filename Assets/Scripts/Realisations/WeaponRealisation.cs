@@ -21,9 +21,7 @@ namespace Realisations
         
         public Transform sleeveSpawnpoint;
         public Transform bulletSpawnpoint;
-        
-        public override List<IBehaviour> GetBehaviours() => new List<IBehaviour>{_shootBehaviour, _weaponAnimationBehaviour};
-        
+                
         private void Awake()
         {
             _shootBehaviour = new ShootBehaviour();
@@ -31,18 +29,10 @@ namespace Realisations
 
             SetupContainers(_shootDependencies, _weaponAnimationDependencies);
             _shootBehaviour.BindDependencies(_shootDependencies);
-        }
+            behaviours = new List<IBehaviour>{_shootBehaviour};
 
-        private void Update()
-        {
-            _shootBehaviour?.Update();
-            _weaponAnimationBehaviour?.Update();
-        }
-
-        private void FixedUpdate()
-        {
-            _weaponAnimationBehaviour?.FixedUpdate();
-            _shootBehaviour?.FixedUpdate();
+            onUpdate = behaviour => behaviour.Update();
+            onFixedUpdate = behaviour => behaviour.FixedUpdate();
         }
 
         public override void SetupContainers(params ScriptableObject[] dependencies)
@@ -54,7 +44,7 @@ namespace Realisations
             shootDependencies.bulletSpawnpoint = bulletSpawnpoint;
             shootDependencies.sleeveSpawnpoint = sleeveSpawnpoint;
             shootDependencies.animationBehaviour = _weaponAnimationBehaviour;
-            Debug.Log(shootDependencies.animationBehaviour);
+
             shootDependencies.realisation = this;
 
             var animationDependencies = dependencies[1] as WeaponAnimationDependencies;

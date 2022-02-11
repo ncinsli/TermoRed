@@ -1,4 +1,4 @@
-﻿using Definitions;
+using Definitions;
 using Dependencies;
 using UnityEngine;
 
@@ -7,16 +7,7 @@ namespace Behaviours
     public class WeaponAnimationBehaviour : IBehaviour
     {
         private WeaponAnimationDependencies deps { get; set; }
-        public void Update()
-        {
-            
-        }
-
-        public void FixedUpdate()
-        {
-            
-        }
-
+        private bool inActive;
         public void OnShoot() => deps.animator.SetInteger("AnimationId", 1);
 
         public void OnReload() => deps.animator.SetInteger("AnimationId", 2);
@@ -26,7 +17,19 @@ namespace Behaviours
         public IBehaviour BindDependencies(IBehaviourDependency context)
         {   
             deps = context as WeaponAnimationDependencies;
-            Debug.Log(deps.animator);
+
+            return this;
+        }
+        
+        public IBehaviour Deactivate()
+        {
+            inActive = true;
+            return this;
+        }
+
+        public IBehaviour Activate()
+        {
+            inActive = false;
             return this;
         }
     }
