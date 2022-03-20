@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 851043131059397553}
   - component: {fileID: 851043131059397558}
+  - component: {fileID: 4899047713359272818}
   m_Layer: 0
   m_Name: AK-47
   m_TagString: Untagged
@@ -53,6 +54,19 @@ MonoBehaviour:
   _weaponAnimationDependencies: {fileID: 0}
   sleeveSpawnpoint: {fileID: 0}
   bulletSpawnpoint: {fileID: 0}
+--- !u!114 &4899047713359272818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 851043131059397552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d6a38f698149f6a4fec2cf5416303d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textData: {fileID: 4900000, guid: 6a444216afca48d2a11a7556dcb55c10, type: 3}
 --- !u!1 &4980378642966522953
 GameObject:
   m_ObjectHideFlags: 0

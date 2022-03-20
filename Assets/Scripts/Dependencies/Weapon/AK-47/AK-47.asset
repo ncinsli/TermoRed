@@ -12,11 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b078d6dea61d014b9954052a0004a2f, type: 3}
   m_Name: AK-47
   m_EditorClassIdentifier: 
+  stateProvider: {fileID: 0}
   shootKey: 323
+  reloadKey: 114
   bulletPrefab: {fileID: 8823261667794607850, guid: 03aebdb6f44924e4ca016aad800b3296, type: 3}
   bulletSpawnpoint: {fileID: 0}
   sleevePrefab: {fileID: 1879592512205306636, guid: afe8787de28c882428acc51d0907a0ea, type: 3}
   smokeEffect: {fileID: 0}
   sleeveFrequency: 16
+  bulletFrequency: 20
   sleeveSpawnpoint: {fileID: 0}
   directionCounter: {fileID: 0}

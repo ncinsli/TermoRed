@@ -5,12 +5,15 @@ using Definitions;
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
+using States;
 
 namespace Realisations
 {
     [ExecuteInEditMode]
     public class PlayerRealisation : BehaviourRealisation
     {
+        private PlayerStateProvider _playerState;
+        
         [SerializeField] private MoveBehaviour _moveBehaviour;
         public MoveDependencies moveDependencies;
 
@@ -25,6 +28,8 @@ namespace Realisations
 
         private void OnEnable()
         {
+            _playerState = GetComponent<PlayerStateProvider>();
+            
             SetupContainers(moveDependencies, inputDependencies);
             
             _moveBehaviour = new MoveBehaviour().BindDependencies(moveDependencies) as MoveBehaviour;
@@ -56,7 +61,7 @@ namespace Realisations
             moveDeps.realisation = this;
             moveDeps.body = GetComponent<Rigidbody>();
             moveDeps.directionCounter = directionCounter;
-            
+
             inputDeps.gameObject = gameObject;
             inputDeps.realisation = this;
         }

@@ -4,6 +4,7 @@ using UnityEngine;
 using Definitions;
 using Behaviours;
 using Dependencies;
+using States;
 
 namespace Realisations
 {
@@ -21,9 +22,14 @@ namespace Realisations
         
         public Transform sleeveSpawnpoint;
         public Transform bulletSpawnpoint;
+
+        [SerializeField] private WeaponStateProvider _weaponStateProvider;
                 
         private void Awake()
         {
+            if (!_weaponStateProvider) 
+                _weaponStateProvider = GetComponent<WeaponStateProvider>();
+            
             _shootBehaviour = new ShootBehaviour();
             _weaponAnimationBehaviour = new WeaponAnimationBehaviour().BindDependencies(_weaponAnimationDependencies) as WeaponAnimationBehaviour;
 
@@ -43,6 +49,7 @@ namespace Realisations
             shootDependencies.directionCounter = directionCounter;
             shootDependencies.bulletSpawnpoint = bulletSpawnpoint;
             shootDependencies.sleeveSpawnpoint = sleeveSpawnpoint;
+            shootDependencies.stateProvider = _weaponStateProvider;
             shootDependencies.animationBehaviour = _weaponAnimationBehaviour;
 
             shootDependencies.realisation = this;

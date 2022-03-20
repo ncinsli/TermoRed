@@ -11,20 +11,33 @@ namespace Behaviours
     {
         public IBehaviourDependency dependencies => _dependencies;
         private ShootDependencies _dependencies { get; set; }
-        private int count = 0;
+        private int sleeveCounter = 0;
+        private int bulletCounter = 0;
 
         public void Update()
         {
             
             if (Input.GetKey(_dependencies.shootKey))
             {
+                Debug.Log(_dependencies.animationBehaviour.currentAnimation);
+
+                sleeveCounter++;
+                if (sleeveCounter % _dependencies.bulletFrequency != 0) return;
+                
+                if (_dependencies.stateProvider.state.bulletCount <= 0)
+                {
+                    _dependencies.animationBehaviour.OnIdle();
+                    return;
+                }
+                _dependencies.stateProvider.SubtractBullets(1);
+                
                 _dependencies.animationBehaviour.OnShoot();
                 var bullet = GameObject.Instantiate(_dependencies.bulletPrefab, _dependencies.bulletSpawnpoint.position, Quaternion.LookRotation(_dependencies.directionCounter.rawForward) * Quaternion.Euler(-90f, 0f, 0f));
                 
                 if (_dependencies.sleevePrefab)
                 {
-                    count = ( count + 1 ) % _dependencies.sleeveFrequency;
-                    if (count % _dependencies.sleeveFrequency == 0)
+                    sleeveCounter = ( sleeveCounter + 1 ) % _dependencies.sleeveFrequency;
+                    if (sleeveCounter % _dependencies.sleeveFrequency == 0)
                         GameObject.Instantiate(_dependencies.sleevePrefab, _dependencies.sleeveSpawnpoint.position, _dependencies.realisation.transform.rotation);
                     
                 }
@@ -41,6 +54,12 @@ namespace Behaviours
             if (Input.GetKeyDown(_dependencies.reloadKey))
             {
                 _dependencies.animationBehaviour.OnReload();
+                _dependencies.stateProvider.Reload();
+            }
+
+            if (Input.GetKeyUp(_dependencies.reloadKey))
+            {
+                _dependencies.animationBehaviour.OnIdle();
             }
         }
 

@@ -10,8 +10,6 @@ namespace Behaviours
         private ViewDependencies _dependencies;
         public void Update()
         {
-            Debug.Log(_dependencies.realisation);
-
             _dependencies.currentRotation = _dependencies.transform.eulerAngles;
             _dependencies.currentRotation += new Vector3(-Input.GetAxis("Mouse Y"), Input.GetAxis("Mouse X"), 0f);
             _dependencies.transform.rotation = Quaternion.Euler(_dependencies.currentRotation);
