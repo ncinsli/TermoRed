@@ -16,10 +16,11 @@ namespace Behaviours
         {
             deps.animator.SetInteger("AnimationId", 1);
             currentAnimation = WeaponAnimationState.Shoot;
-            deps.shootEffect.Play();
+//            deps.shootEffect?.Play();
         }
         public void OnReload() 
         {
+            Debug.Log("Reload!");
             deps.animator.SetInteger("AnimationId", 2);
             currentAnimation = WeaponAnimationState.Reload;
         }

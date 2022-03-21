@@ -16,7 +16,6 @@ namespace Behaviours
 
         public void Update()
         {
-            
             if (Input.GetKey(_dependencies.shootKey))
             {
                 Debug.Log(_dependencies.animationBehaviour.currentAnimation);
@@ -56,7 +55,7 @@ namespace Behaviours
                 _dependencies.animationBehaviour.OnReload();
                 _dependencies.stateProvider.Reload();
             }
-
+            
             if (Input.GetKeyUp(_dependencies.reloadKey))
             {
                 _dependencies.animationBehaviour.OnIdle();
