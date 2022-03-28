@@ -14,6 +14,16 @@ namespace Definitions
         public void EjectBehaviour(IBehaviour behaviour) => behaviours.Remove(behaviours.Find((b) => b.GetType() == behaviour.GetType()));
         public void InjectBehaviour(IBehaviour behaviour) => behaviours.Add(behaviour);
 
+        public T TryGetBehaviour<T>() where T : class, IBehaviour
+        {
+            T result = null;
+            behaviours.ForEach(b =>
+            {
+                if (b.GetType() == typeof(T)) result = b as T;
+            });
+            return result;
+        }
+        
         public T TryGetDependency<T>() where T : class, IBehaviourDependency
         {
             T result = null;
@@ -36,6 +46,7 @@ namespace Definitions
             {
                 var a = b as IUpdateReceiver;
                 if (a == null) return;
+                a.Update();
                 onUpdate?.Invoke(a);
             });
         } 
@@ -45,11 +56,16 @@ namespace Definitions
             {
                 var a = b as IFixedUpdateReceiver;
                 if (a == null) return;
-
+                a?.FixedUpdate();
                 onFixedUpdate?.Invoke(a);
             });
         }
-        private void OnCollisionEnter(Collision col) => behaviours.ForEach(b => onCollisionEnter?.Invoke(b as ICollisionEventReceiver, col));
+        private void OnCollisionEnter(Collision col) => 
+            behaviours.ForEach(b =>
+            {
+                (b as ICollisionEventReceiver)?.OnCollisionEnter(col);
+                onCollisionEnter?.Invoke(b as ICollisionEventReceiver, col);
+            });
         /*
          * Implementing some MonoBehaviour functions as methods (not globally)
          */

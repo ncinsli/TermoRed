@@ -16,4 +16,4 @@ MonoBehaviour:
   speed: 100
   destroyableBy:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1

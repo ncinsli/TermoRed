@@ -41,6 +41,7 @@
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Behaviours\DamageBehaviour.cs" />
      <Compile Include="Assets\Scripts\States\Player\PlayerStateProvider.cs" />
      <Compile Include="Assets\Scripts\Realisations\PlayerRealisation.cs" />
      <Compile Include="Assets\Scripts\Dependencies\Protos\BulletDependencies.cs" />
@@ -49,9 +50,7 @@
      <Compile Include="Assets\Scripts\BehaviourRealisation.cs" />
      <Compile Include="Assets\Scripts\IBehaviourDependency.cs" />
      <Compile Include="Assets\Scripts\GUI\WeaponBulletRedirector.cs" />
-     <Compile Include="Assets\Scripts\Behaviours\BulletBehaviour.cs" />
      <Compile Include="Assets\Scripts\States\Weapon\WeaponStateProvider.cs" />
-     <Compile Include="Assets\Scripts\Realisations\BulletRealisation.cs" />
      <Compile Include="Assets\Scripts\Dependencies\Protos\MoveDependencies.cs" />
      <Compile Include="Assets\Scripts\GUI\StateGUIRedirector.cs" />
      <Compile Include="Assets\Scripts\DirectionCounter.cs" />
@@ -74,6 +73,7 @@
      <Compile Include="Assets\Scripts\States\Player\PlayerState.cs" />
      <Compile Include="Assets\Scripts\States\ObjectStateProvider.cs" />
      <Compile Include="Assets\Scripts\Realisations\WeaponRealisation.cs" />
+     <Compile Include="Assets\Scripts\Dependencies\Protos\DamageDependencies.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

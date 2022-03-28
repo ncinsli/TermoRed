@@ -17,7 +17,7 @@ namespace Definitions
         IBehaviourDependency dependencies { get; }
     }
 
-    // Something (usually behaviour) that gets updates from game loop
+    // Something (usually behaviour) that gets updates from the game loop
     public interface IUpdateReceiver
     {
         void Update();
@@ -29,9 +29,15 @@ namespace Definitions
         void OnCollisionEnter(Collision col);
     }
 
-    // Something (usually behaviour) that gets fixed updates from game loop
+    // Something (usually behaviour) that gets fixed updates from the game loop
     public interface IFixedUpdateReceiver
     {
         void FixedUpdate();
+    }
+
+    // Something (usually behaviour) that gets custom updates
+    public interface ICustomUpdateReceiver<T>
+    {
+        void OnCustomUpdate(T arg0);
     }
 }

@@ -39,14 +39,12 @@ namespace Realisations
 
             onUpdate = behaviour => 
             {
-                behaviour?.Update();
                 moveDependencies.isJumping = inputDependencies.isJumping;
                 moveDependencies.direction = inputDependencies.axis;
             };
 
             onFixedUpdate = behaviour => 
             {
-                behaviour?.FixedUpdate();
                 moveDependencies.onGround = groundChecker.touchingGround;
                 moveDependencies.deltaTime = Time.deltaTime;
             };

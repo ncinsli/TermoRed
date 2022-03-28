@@ -36,9 +36,6 @@ namespace Realisations
             SetupContainers(_shootDependencies, _weaponAnimationDependencies);
             _shootBehaviour.BindDependencies(_shootDependencies);
             behaviours = new List<IBehaviour>{_shootBehaviour};
-
-            onUpdate = behaviour => behaviour.Update();
-            onFixedUpdate = behaviour => behaviour.FixedUpdate();
         }
 
         public override void SetupContainers(params ScriptableObject[] dependencies)
