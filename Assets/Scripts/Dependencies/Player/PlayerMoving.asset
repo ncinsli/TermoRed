@@ -13,4 +13,10 @@ MonoBehaviour:
   m_Name: PlayerMoving
   m_EditorClassIdentifier: 
   maxSpeed: 2.38
-  jumpPower: 14
+  jumpPower: 15
+  direction: {x: 0, y: 0, z: 0}
+  body: {fileID: 0}
+  deltaTime: 0.02
+  isJumping: 0
+  onGround: 1
+  directionCounter: {fileID: 0}

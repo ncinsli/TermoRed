@@ -25,6 +25,7 @@ namespace Behaviours
                 Debug.Log("Shoot to " + hit.transform.gameObject.name);
                 
                 var gameObject = hit.transform.gameObject;
+                //GameObject.Destroy(gameObject);
                 gameObject.GetComponent<BehaviourRealisation>()?.TryGetBehaviour<DamageBehaviour>()?.TakeDamage(1);
             }
             
