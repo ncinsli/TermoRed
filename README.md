@@ -9,4 +9,4 @@
 
 contact: **vk.com/ncinsli**
 
-![Снимок](https://user-images.githubusercontent.com/56553344/122592290-883b2900-d07d-11eb-9f27-d3bf7266f927.PNG)
+![Снимок](https://sun9-23.userapi.com/impg/tmz3FKGKWg007ydnydTjtJMBEFhyZnHJYMmOAQ/6RSBQe9Dbkw.jpg?size=1910x885&quality=96&sign=e0d316b5778aa21ce4fe2a30c955099c&type=album)
