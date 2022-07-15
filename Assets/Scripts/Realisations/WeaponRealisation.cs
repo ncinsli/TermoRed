@@ -24,7 +24,8 @@ namespace Realisations
         public Transform bulletSpawnpoint;
 
         [SerializeField] private WeaponStateProvider _weaponStateProvider;
-                
+        [SerializeField] private GameObject _decal;
+        
         private void Awake()
         {
             if (!_weaponStateProvider) 
@@ -47,10 +48,12 @@ namespace Realisations
             shootDependencies.bulletSpawnpoint = bulletSpawnpoint;
             shootDependencies.sleeveSpawnpoint = sleeveSpawnpoint;
             shootDependencies.stateProvider = _weaponStateProvider;
+        
             shootDependencies.animationBehaviour = _weaponAnimationBehaviour;
-
+            
             shootDependencies.realisation = this;
-
+            shootDependencies.decal = _decal;
+            
             var animationDependencies = dependencies[1] as WeaponAnimationDependencies;
             animationDependencies.animator = _animator;
             animationDependencies.realisation = this;

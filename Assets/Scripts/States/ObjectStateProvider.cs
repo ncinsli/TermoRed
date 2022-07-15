@@ -30,12 +30,15 @@ namespace GameState
 
         public T Deserialize()
         {
-            var jsonFromDrive = File.ReadAllText(Application.persistentDataPath + $"/{stateFileName}.json");
-            if (jsonFromDrive == "")
+            string jsonFromDrive;
+            if (!File.Exists(Application.persistentDataPath + $"/{stateFileName}.json"))
             {
                 Serialize(new T());
                 jsonFromDrive = File.ReadAllText(Application.persistentDataPath + $"/{stateFileName}.json");
             }
+            else 
+                jsonFromDrive = File.ReadAllText(Application.persistentDataPath + $"/{stateFileName}.json");
+            
             return JsonUtility.FromJson<T>(jsonFromDrive);
         }
 

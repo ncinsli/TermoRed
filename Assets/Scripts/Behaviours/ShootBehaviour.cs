@@ -22,11 +22,22 @@ namespace Behaviours
             Debug.DrawRay(ray.origin, ray.direction);
             if (Physics.Raycast(ray, out hit))
             {
+                Rigidbody rigidbody;
                 Debug.Log("Shoot to " + hit.transform.gameObject.name);
+                hit.transform.TryGetComponent<Rigidbody>(out rigidbody);
+                rigidbody?.AddForceAtPosition(_dependencies.directionCounter.rawForward * 100f, hit.point);
+                
                 
                 var gameObject = hit.transform.gameObject;
                 //GameObject.Destroy(gameObject);
                 gameObject.GetComponent<BehaviourRealisation>()?.TryGetBehaviour<DamageBehaviour>()?.TakeDamage(1);
+                var decalPrefab = GameObject.Instantiate(_dependencies.decal);
+                decalPrefab.transform.position = hit.point;
+                decalPrefab.transform.rotation = Quaternion.LookRotation(hit.normal);
+                decalPrefab.transform.localScale = Vector3.one * 0.1f;
+                decalPrefab.transform.SetParent(gameObject.transform);
+                
+                Debug.Log(hit.transform);
             }
             
             if (_dependencies.sleevePrefab)
@@ -42,7 +53,10 @@ namespace Behaviours
             if (Input.GetKey(_dependencies.shootKey))
             {
                 bulletCounter++;
-                if (bulletCounter % _dependencies.bulletFrequency != 0) return;
+                if (bulletCounter % _dependencies.bulletFrequency != 0)
+                {
+                    return;
+                }
                 
                 if (_dependencies.stateProvider.state.bulletCount <= 0)
                 {
